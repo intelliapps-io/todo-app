@@ -1,0 +1,33 @@
+fragment Subtask on Subtask {
+  id
+  title
+  isCompleted
+}
+
+mutation CreateSubtask($taskId: Float!, $data: SubtaskInput!) {
+  createSubtask(taskId: $taskId, data: $data) {
+    ...Subtask
+  }
+}
+
+mutation UpdateSubtask($subtaskId: Float!, $data: SubtaskInput!) {
+  updateSubtask(subtaskId: $subtaskId, data: $data) {
+    ...Subtask
+  }
+}
+
+mutation DeleteSubtask($subtaskId: Float!) {
+  deleteSubtask(subtaskId: $subtaskId) 
+}
+
+query Subtask($subtaskId: Float!) {
+  subtask(subtaskId: $subtaskId) {
+    ...Subtask
+  }
+}
+
+query Subtasks($taskId: Float!) {
+  subtasks(taskId: $taskId) {
+    ...Subtask
+  }
+}

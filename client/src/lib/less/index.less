@@ -1,0 +1,47 @@
+@import './breakpoints.less';
+@import './variables.less';
+
+body {
+  background: -webkit-linear-gradient(#F7F7F7, #EDEDED);
+  background-color: #EDEDED; 
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+.app-layout {
+  height: 100%;
+  // max-height: 100vh;
+  overflow: hidden;
+  background: transparent;
+}
+
+.app-layout-content {
+  height: 100%;
+  width: -webkit-fill-available;
+  // padding: 0 3%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+// .menu-content-wrapper {
+//   display: flex;
+// }
+
+// Override Ant D
+
+.icon-btn {
+  border-width: 0px;
+  box-shadow: 0 0 black;
+}
+
+.icon-btn-lg {
+  border-width: 0px;
+  box-shadow: 0 0 black;
+  span {
+    font-size: 18px
+  }
+}

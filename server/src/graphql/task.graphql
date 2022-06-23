@@ -1,0 +1,66 @@
+fragment Task on Task {
+  id,
+  title,
+  description,
+  isCompleted,
+  isImportant,
+  dateDue,
+  dateCreated,
+  subtasks {
+    ...Subtask
+  },
+  assignedTo {
+    id
+    firstName
+    lastName
+    name
+    email
+  }
+  createdBy {
+    id
+    firstName
+    lastName
+    name
+    email
+  }
+}
+
+mutation CreateTask($data: TaskInput!) {
+  createTask(data: $data) {
+    ...Task
+  }
+}
+
+mutation UpdateTask($id: Float!, $data: TaskInput!) {
+  updateTask(id: $id, data: $data) {
+    ...Task
+  }
+}
+
+mutation DeleteTask($id: Float!) {
+  deleteTask(id: $id)
+}
+
+query Task($id: Float!) {
+  task(id: $id) {
+    ...Task
+  }
+}
+
+query Tasks($filters: TaskFilters!) {
+  tasks(filters: $filters) {
+    ...Task
+  }
+}
+
+mutation AssignTaskToUser($taskId: Float!, $userEmail: String!) {
+  assignTaskToUser(taskId: $taskId, userEmail: $userEmail) {
+    ...Task
+  }
+}
+
+mutation UnassignTaskToUser($taskId: Float!, $userEmail: String!) {
+  unassignTaskToUser(taskId: $taskId, userEmail: $userEmail) {
+    ...Task
+  }
+}

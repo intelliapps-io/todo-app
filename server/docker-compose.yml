@@ -1,0 +1,90 @@
+#############################################################################
+################################ PostgreSQL #################################
+# version: '3.5'
+
+# services:
+#   postgres:
+#     container_name: postgres
+#     image: postgres
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: postgres
+#       POSTGRES_DB: postgres
+#       PGDATA: /data/postgres
+#     volumes:
+#        - postgres:/data/postgres
+#     ports:
+#       - "5432:5432"
+#     networks:
+#       - postgres
+#     restart: unless-stopped
+  
+#   pgadmin:
+#     container_name: pgadmin
+#     image: dpage/pgadmin4
+#     environment:
+#       PGADMIN_DEFAULT_EMAIL: admin@local.host
+#       PGADMIN_DEFAULT_PASSWORD: postgres
+#     volumes:
+#        - pgadmin:/root/.pgadmin
+#     ports:
+#       - "5050:80"
+#     networks:
+#       - postgres
+#     restart: unless-stopped
+
+# networks:
+#   postgres:
+#     driver: bridge
+
+# volumes:
+#     postgres:
+#     pgadmin:
+
+#########################################################################
+################################ MYSQL ##################################
+
+version: '3.5'
+
+services:
+  mysql:
+    container_name: mysql
+    image: mariadb:10.5.8
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      - mysql
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: user
+      PMA_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password 
+    depends_on:
+      - mysql
+    ports:
+      - 8080:80
+    networks:
+      - mysql
+    restart: always
+
+networks:
+  mysql:
+    driver: bridge
+
+volumes:
+  mysql:

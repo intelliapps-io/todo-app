@@ -1,0 +1,22 @@
+@import '../../lib/less/breakpoints.less';
+
+.task-list-layout {
+  padding: 0 40px 40px;
+
+  @media @for-lg {
+    padding: 0 24px 24px;
+  }
+
+  @media @for-md {
+    padding: 0;
+  }
+}
+
+.home-menu-sider {
+  .ant-menu-inline-collapsed {
+    width: 45px;
+  }
+  .ant-layout-sider-children {
+    background-color: #fff;
+  }
+}
